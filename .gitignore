@@ -1,5 +1,6 @@
 # Vim trash
 *.swp
+*.swo
 
 # App artifacts
 /_build

@@ -1,21 +1,23 @@
-// Brunch automatically concatenates all files in your
-// watched paths. Those paths can be configured at
-// config.paths.watched in "brunch-config.js".
-//
-// However, those files will only be executed if
-// explicitly imported. The only exception are files
-// in vendor, which are never wrapped in imports and
-// therefore are always executed.
+import socket from "./socket";
+import Room from "./screens/room";
+import Index from "./screens/index";
+const { DefaultRoute, HistoryLocation, Route, RouteHandler } = ReactRouter;
 
-// Import dependencies
-//
-// If you no longer want to use a dependency, remember
-// to also remove its path from "config.paths.watched".
-import "deps/phoenix_html/web/static/js/phoenix_html"
+class App extends React.Component {
+  render() {
+    return (
+      <RouteHandler {...this.props} />
+    );
+  }
+}
 
-// Import local files
-//
-// Local files can be imported directly using relative
-// paths "./socket" or full ones "web/static/js/socket".
+const routes = (
+  <Route name="app" path="/" handler={App}>
+    <Route name="game" path="room/:roomID" handler={Room}/>
+    <DefaultRoute name="index" handler={Index} />
+  </Route>
+);
 
-// import socket from "./socket"
+ReactRouter.run(routes, HistoryLocation, (Handler, state) => {
+  ReactDOM.render(<Handler params={state.params} />, document.getElementById("app-container"));
+});
