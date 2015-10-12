@@ -1,5 +1,10 @@
 # Chatty
 
+This is just a basic Phoenix template with react support. It pulls in React
+0.14 and ReactRouter 0.13.x. Until I find a solution for properly requiring
+bower modules from Brunch, `React` and `ReactRouter` are available as global
+variables, but ES6 module syntax is used elsewhere.
+
 To start your Phoenix app:
 
   1. Install dependencies with `mix deps.get`
